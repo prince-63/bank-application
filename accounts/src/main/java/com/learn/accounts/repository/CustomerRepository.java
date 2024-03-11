@@ -1,6 +1,6 @@
 package com.learn.accounts.repository;
 
-import com.learn.accounts.model.Customer;
+import com.learn.accounts.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

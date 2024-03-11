@@ -1,4 +1,4 @@
-package com.learn.accounts.model;
+package com.learn.accounts.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

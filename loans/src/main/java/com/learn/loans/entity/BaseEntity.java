@@ -1,11 +1,8 @@
-package com.learn.accounts.model;
+package com.learn.loans.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -16,21 +13,14 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@Getter @Setter @ToString
+@Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor
 public class BaseEntity {
     @CreatedDate
-    @Column(updatable = false)
     private LocalDateTime createdAt;
-
     @CreatedBy
-    @Column(updatable = false)
     private String createdBy;
-
     @LastModifiedDate
-    @Column(insertable = false)
     private LocalDateTime updatedAt;
-
     @LastModifiedBy
-    @Column(insertable = false)
     private String updatedBy;
 }

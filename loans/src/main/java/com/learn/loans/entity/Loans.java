@@ -1,4 +1,4 @@
-package com.learn.accounts.model;
+package com.learn.loans.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,11 +8,14 @@ import lombok.*;
 
 @Entity
 @Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor
-public class Customer extends BaseEntity{
+public class Loans extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerId;
-    private String name;
-    private String email;
+    private Long loanId;
     private String mobileNumber;
+    private String loanNumber;
+    private String loanType;
+    private Integer totalLoan;
+    private Integer amountPaid;
+    private Integer outstandingAmount;
 }

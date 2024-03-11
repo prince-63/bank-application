@@ -1,6 +1,6 @@
 package com.learn.accounts.mapper;
 
-import com.learn.accounts.model.Account;
+import com.learn.accounts.entity.Account;
 import com.learn.accounts.dto.AccountDto;
 
 public class AccountMapper {
