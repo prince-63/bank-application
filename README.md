@@ -1,29 +1,29 @@
 # Your Bank
   your bank is a microservice based backend application that provide each and every 
   work in different different microservice like cards have a different microserivce application, 
-  same as cards have account and loans
+  same as cards have account and loans.
 
-### accounts microservice provide these service
+### Accounts microservice provide these service -
   - create account details
   - fetch account details
   - update account details
   - delete account detals
     
-### cards microservice provide these service
+### Cards microservice provide these service -
   - create card details
   - fetch card details
   - update card details
   - delete card detals
 
-### loans microservice provide these service
+### Loans microservice provide these service -
   - create loans details
   - fetch loans details
   - update loans details
   - delete loans detals
 
-###### As, Well we also implimented a profile concepts like
+#### As, Well we also implimented a profile concepts like -
   - production have a different type of configuration
   - development have a different type of configuration
   - testing have a different type of configuration
 
-##### here we used h2-database as a development purpose
+here we used h2-database as a development purpose.
