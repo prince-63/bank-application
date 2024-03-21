@@ -3,19 +3,23 @@
   work in different different microservice like cards have a different microserivce application, 
   same as cards have account and loans.
 
+
 ### Accounts microservice provide these REST end-points -
+
   - create account details
   - fetch account details
   - update account details
   - delete account detals
     
 ### Cards microservice provide these REST end-points -
+
   - create card details
   - fetch card details
   - update card details
   - delete card detals
 
 ### Loans microservice provide these REST end-points -
+
   - create loans details
   - fetch loans details
   - update loans details
