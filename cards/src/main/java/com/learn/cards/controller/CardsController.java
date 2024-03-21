@@ -1,7 +1,7 @@
 package com.learn.cards.controller;
 
 import com.learn.cards.constants.CardsConstants;
-import com.learn.cards.dto.CardsContactInfo;
+import com.learn.cards.dto.CardsContactInfoDto;
 import com.learn.cards.dto.CardsDto;
 import com.learn.cards.dto.ErrorResponseDto;
 import com.learn.cards.dto.ResponseDto;
@@ -14,7 +14,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -33,7 +32,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class CardsController {
 
-    private ICardsService cardsService;
+    private final ICardsService cardsService;
 
     public CardsController(ICardsService cardsService) {
         this.cardsService = cardsService;
@@ -46,7 +45,7 @@ public class CardsController {
     private Environment environment;
 
     @Autowired
-    private CardsContactInfo cardsContactInfo;
+    private CardsContactInfoDto cardsContactInfoDto;
 
     @Operation(
             summary = "Create Card REST API",
@@ -241,7 +240,7 @@ public class CardsController {
     }
     )
     @GetMapping("/contact-info")
-    public ResponseEntity<CardsContactInfo> getContactInfo() {
-        return new ResponseEntity<>(cardsContactInfo, HttpStatus.OK);
+    public ResponseEntity<CardsContactInfoDto> getContactInfo() {
+        return new ResponseEntity<>(cardsContactInfoDto, HttpStatus.OK);
     }
 }

@@ -2,7 +2,9 @@ server:
     port: 8090
 spring:
     application:
-        name: "Loans Application"
+        name: "loans"
+    profiles:
+        active: "prod"
     datasource:
         url: jdbc:h2:mem:testdb
         driverClassName: org.h2.Driver
@@ -14,23 +16,18 @@ spring:
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
         hibernate:
-            ddl-auto: update
+            ddl-auto: create
         show-sql: true
     config:
-        import:
-            - "application_prod.yml"
-            - "application_qa.yml"
-    profiles:
-        active: "qa"
-
-build:
-    version: "1.0"
-    
-loans:
-    message: "Welcome to YourBank loans related local APIs"
-    contactDetails:
-        name: "Golam Zaid - Developer"
-        email: "golamzaid@yourbank.com"
-    onCallSupport:
-        - (555) 555-1234
-        - (555) 523-1345
+        import: "optional:configserver:http://localhost:8071/"
+    rabbitmq:
+        host: "localhost"
+        port: 5672
+        username: "guest"
+        password: "guest"
+# actuator
+management:
+    endpoints:
+        web:
+          exposure:
+              include: "*"

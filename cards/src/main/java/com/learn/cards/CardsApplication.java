@@ -1,6 +1,6 @@
 package com.learn.cards;
 
-import com.learn.cards.dto.CardsContactInfo;
+import com.learn.cards.dto.CardsContactInfoDto;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
@@ -32,7 +32,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 		)
 )
 @EnableJpaAuditing(auditorAwareRef = "AuditAwareImpl")
-@EnableConfigurationProperties(value = {CardsContactInfo.class})
+@EnableConfigurationProperties(value = {CardsContactInfoDto.class})
 @SpringBootApplication
 public class CardsApplication {
 

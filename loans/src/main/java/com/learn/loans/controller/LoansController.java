@@ -39,7 +39,7 @@ public class LoansController {
         this.loansService = loansService;
     }
 
-    @Value("${build.version}")
+    @Value(value = "${build.version}")
     private String buildInfo;
 
     @Autowired
