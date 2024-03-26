@@ -4,7 +4,7 @@ spring:
     application:
         name: "accounts"
     profiles:
-        active: "prod"
+        active: default
     datasource:
         url: jdbc:h2:mem:testdb
         driverClassName: org.h2.Driver
@@ -20,18 +20,35 @@ spring:
         show-sql: true
     config:
         import: "optional:configserver:http://localhost:8071/"
-    rabbitmq:
-        host: "localhost"
-        port: 5672
-        username: "guest"
-        password: "guest"
+
 # actuator
 management:
     endpoints:
         web:
             exposure:
                 include: "*"
+    endpoint:
+        shutdown:
+            enabled: true
+    info:
+        env:
+            enabled: true
 
-# --spring.profile.active=prod - command line arguments
-# -Dspring.profile.active=prod - use to define VM ClassPaths
-# SPRING_PROFILE_ACTIVE=prod - use to define
+endpoints:
+    shutdown:
+        enabled: true
+
+eureka:
+    instance:
+        preferIpAddress: true
+    client:
+        fetchRegistry: true
+        registerWithEureka: true
+        serviceUrl:
+            defaultZone: http://localhost:8070/eureka/
+            
+info:
+    app:
+        name: "accounts"
+        description: "Your Bank Accounts Application"
+        version: "1.0.0"
