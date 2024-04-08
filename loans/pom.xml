@@ -88,7 +88,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>princekumar62/${project.artifactId}:v2</name>
+						<name>princekumar62/${project.artifactId}:v5</name>
 					</image>
 					<excludes>
 						<exclude>

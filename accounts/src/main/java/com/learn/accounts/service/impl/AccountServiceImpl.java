@@ -12,17 +12,19 @@ import com.learn.accounts.service.IAccountService;
 import com.learn.accounts.constants.AccountConstants;
 import com.learn.accounts.dto.AccountDto;
 import com.learn.accounts.dto.CustomerDto;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.Random;
 
 @Service
-@AllArgsConstructor
 public class AccountServiceImpl implements IAccountService {
 
+    @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
     private CustomerRepository customerRepository;
 
     /**

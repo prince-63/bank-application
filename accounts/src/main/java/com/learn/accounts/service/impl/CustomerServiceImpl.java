@@ -14,17 +14,23 @@ import com.learn.accounts.repository.CustomerRepository;
 import com.learn.accounts.service.ICustomerService;
 import com.learn.accounts.service.client.CardsFeignClient;
 import com.learn.accounts.service.client.LoansFeignClient;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
 public class CustomerServiceImpl implements ICustomerService {
 
+    @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
     private LoansFeignClient loansFeignClient;
+
+    @Autowired
     private CardsFeignClient cardsFeignClient;
 
     /**

@@ -33,11 +33,8 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class LoansController {
 
-    private final ILoansService loansService;
-
-    public LoansController(ILoansService loansService) {
-        this.loansService = loansService;
-    }
+    @Autowired
+    private ILoansService loansService;
 
     @Value(value = "${build.version}")
     private String buildInfo;

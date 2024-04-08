@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Pattern;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,11 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 public class CustomerController {
 
-    private final ICustomerService customerService;
-
-    public CustomerController(ICustomerService customerService) {
-        this.customerService = customerService;
-    }
+    @Autowired
+    private ICustomerService customerService;
 
     @Operation(
             summary = "Fetch Customer Details REST API",

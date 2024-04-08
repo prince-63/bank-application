@@ -32,11 +32,8 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class AccountController {
 
-    private final IAccountService iAccountService;
-
-    public AccountController(IAccountService iAccountService) {
-        this.iAccountService = iAccountService;
-    }
+    @Autowired
+    private IAccountService iAccountService;
 
     @Value("${build.version}")
     private String buildInfo;

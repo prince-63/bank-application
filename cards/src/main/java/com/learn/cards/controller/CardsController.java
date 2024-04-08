@@ -32,11 +32,8 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class CardsController {
 
-    private final ICardsService cardsService;
-
-    public CardsController(ICardsService cardsService) {
-        this.cardsService = cardsService;
-    }
+    @Autowired
+    private ICardsService cardsService;
 
     @Value("${build.version}")
     private String buildInfo;
