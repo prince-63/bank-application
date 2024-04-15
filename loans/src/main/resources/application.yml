@@ -1,3 +1,5 @@
+build:
+    version: 5.0
 server:
     port: 8090
 spring:
@@ -21,15 +23,22 @@ spring:
     config:
         import: "optional:configserver:http://localhost:8071/"
 
-# actuator
 management:
     endpoints:
         web:
             exposure:
                 include: "*"
+    health:
+        readiness-state:
+            enabled: true
+        liveness-state:
+            enabled: true
     endpoint:
         shutdown:
             enabled: true
+        health:
+            probes:
+                enabled: true
     info:
         env:
             enabled: true
@@ -52,3 +61,9 @@ info:
         name: "loans"
         description: "Your Bank Loans Application"
         version: "1.0.0"
+
+logging:
+    level:
+        com:
+            learn:
+                loans: DEBUG

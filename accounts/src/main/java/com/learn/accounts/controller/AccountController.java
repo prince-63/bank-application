@@ -6,6 +6,8 @@ import com.learn.accounts.service.IAccountService;
 import com.learn.accounts.constants.AccountConstants;
 import com.learn.accounts.dto.CustomerDto;
 import com.learn.accounts.dto.ResponseDto;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -14,6 +16,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -32,11 +37,16 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class AccountController {
 
-    @Autowired
-    private IAccountService iAccountService;
+    private final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     @Value("${build.version}")
     private String buildInfo;
+
+    private final IAccountService iAccountService;
+
+    public AccountController(IAccountService iAccountService) {
+        this.iAccountService = iAccountService;
+    }
 
     @Autowired
     private Environment environment;
@@ -182,11 +192,20 @@ public class AccountController {
             )
     }
     )
+    @Retry(name = "getBuildInfo", fallbackMethod = "getBuildInfoFallBack")
     @GetMapping("/build-info")
     public ResponseEntity<String> getBuildInfo() {
+        logger.debug("getBuildInfo() method Invoked");
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(buildInfo);
+    }
+
+    public ResponseEntity<String> getBuildInfoFallBack(Throwable throwable) {
+        logger.debug("getBuildInfoFallBack() method Invoked");
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("0.9");
     }
 
     @Operation(
@@ -207,11 +226,19 @@ public class AccountController {
             )
     }
     )
+
+    @RateLimiter(name="getJavaVersion", fallbackMethod = "getJavaVersionFallBack")
     @GetMapping("/java-version")
     public ResponseEntity<String> getJavaVersion() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(environment.getProperty("JAVA_HOME"));
+    }
+
+    public ResponseEntity<String> getJavaVersionFallBack() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Java 17");
     }
 
     @Operation(

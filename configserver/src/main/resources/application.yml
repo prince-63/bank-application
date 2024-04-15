@@ -9,7 +9,7 @@ spring:
         config:
             server:
                 git:
-                    uri: "https://github.com/prince-63/your-bank-config.git"
+                    uri: "https://github.com/prince-63/bank-application-config.git"
                     default-label: main
                     timeout: 5
                     clone-on-start: true
